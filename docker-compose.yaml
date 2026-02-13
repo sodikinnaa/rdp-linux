@@ -1,10 +1,16 @@
-version: "3.8"
-
 services:
   ubuntu-desktop:
     build: .
     container_name: ubuntu-lxde-vnc
     ports:
       - "6011:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - baota_net
     restart: unless-stopped
+
+networks:
+  baota_net:
+    external: true
 
